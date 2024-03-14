@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "123873526701",
+    "project_id": "assignment-rest-api",
+    "storage_bucket": "assignment-rest-api.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123873526701:android:4866f35a4531decc059724",
+        "android_client_info": {
+          "package_name": "com.example.ph35768_and103_assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuvOOnfpDOz9arh-_9pJY1bZTPrn0F9tQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
