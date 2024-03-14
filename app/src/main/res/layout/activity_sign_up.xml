@@ -60,10 +60,21 @@
             android:paddingVertical="18dp"
             android:paddingHorizontal="15dp"
             android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/et_confirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/br_edittext"
+            android:hint="Confirm password"
+            android:layout_marginTop="20dp"
+            android:paddingVertical="18dp"
+            android:paddingHorizontal="15dp"
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/bt_SignIn"
+        android:id="@+id/bt_SignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
