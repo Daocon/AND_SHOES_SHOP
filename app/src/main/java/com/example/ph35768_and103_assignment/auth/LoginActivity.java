@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.ph35768_and103_assignment.R;
 import com.example.ph35768_and103_assignment.databinding.ActivityLoginBinding;
 import com.example.ph35768_and103_assignment.src.HomeActivity;
+import com.example.ph35768_and103_assignment.src.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
@@ -60,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
             } else {
                 binding.etEmail.setError("Invalid email");

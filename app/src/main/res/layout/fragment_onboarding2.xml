@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    android:background="@color/white"
+    android:background="#F8F9FA"
     android:layout_height="match_parent"
     tools:context=".start.onboarding.OnboardingFragment1">
 
@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Follow Latest Style Shoes"
+        android:text="Follow Latest Style ShoesFollow Latest Style Shoes"
         android:gravity="center_horizontal"
         android:textSize="32sp"
         android:textStyle="bold"

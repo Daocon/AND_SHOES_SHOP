@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.ph35768_and103_assignment.R;
 import com.example.ph35768_and103_assignment.databinding.ActivitySignUpBinding;
+import com.example.ph35768_and103_assignment.src.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -50,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                 finish();
             } else {
                 binding.etEmail.setError("Invalid email address");
