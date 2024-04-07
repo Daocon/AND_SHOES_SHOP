@@ -1,9 +1,6 @@
 package com.example.ph35768_and103_assignment.src;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,8 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.bumptech.glide.Glide;
@@ -22,12 +17,9 @@ import com.example.ph35768_and103_assignment.databinding.ActivityMainBinding;
 import com.example.ph35768_and103_assignment.fragment.CartFragment;
 import com.example.ph35768_and103_assignment.fragment.FavoriteFragment;
 import com.example.ph35768_and103_assignment.fragment.HomeFragment;
-import com.example.ph35768_and103_assignment.fragment.MeFragment;
 import com.example.ph35768_and103_assignment.fragment.NotificationFragment;
 import com.example.ph35768_and103_assignment.model.User;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
