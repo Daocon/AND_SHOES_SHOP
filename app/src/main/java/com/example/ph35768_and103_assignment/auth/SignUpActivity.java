@@ -35,6 +35,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
+import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -105,9 +107,7 @@ public class SignUpActivity extends AppCompatActivity {
         public void onResponse(Call<Response<User>> call, retrofit2.Response<Response<User>> response) {
             if(response.isSuccessful()){
                 if (response.body().getStatus() == 200) {
-                    Toast.makeText(SignUpActivity.this, "Register success", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                    finish();
+                    aniDialog();
                 } else {
                     Toast.makeText(SignUpActivity.this, "Register fail", Toast.LENGTH_SHORT).show();
                 }
@@ -119,6 +119,25 @@ public class SignUpActivity extends AppCompatActivity {
             Log.e("Errorrrrrrrrrrrrrr", t.getMessage());
         }
     };
+
+    private void aniDialog() {
+        BottomSheetMaterialDialog mBottomSheetDialog = new BottomSheetMaterialDialog.Builder(this)
+                .setAnimation(R.raw.success)
+                .setTitle("Success")
+                .setMessage("Congratulations! You have successfully registered.")
+                .setCancelable(false)
+                .setPositiveButton("Cancel", R.drawable.close1, new BottomSheetMaterialDialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        dialogInterface.dismiss();
+                        finish();
+                    }
+                })
+                .build();
+        // Show Dialog
+        mBottomSheetDialog.show();
+    }
 
     private void chooseImage() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -146,6 +165,7 @@ public class SignUpActivity extends AppCompatActivity {
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)
                         .into(binding.ivProfilePicture);
+                binding.tvChooseProfilePicture.setVisibility(View.GONE);
             }
         }
     });

@@ -10,4 +10,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="colorWhenActive">#00BCD4</color> <!-- Màu khi item được chọn -->
     <color name="colorWhenInactive">#6E6E71</color> <!-- Màu khi item không được chọn -->
+    <color name="colorPrimary">#3F51B5</color> <!-- Your primary color -->
+    <color name="colorPrimaryDark">#303F9F</color> <!-- Your primary dark color -->
+    <color name="colorAccent">#FF4081</color> <!-- Your accent color -->
 </resources>

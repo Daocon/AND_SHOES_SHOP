@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PH35768_AND103_Assignment" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Base.Theme.PH35768_AND103_Assignment" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <!-- Primary brand color. -->
@@ -14,7 +14,22 @@
         <!-- Status bar color. -->
 <!--        <item name="android:statusBarColor" tools:targetApi="l">#070707</item>-->
         <!-- Customize your theme here. -->
-    </style>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/montserrat</item>
 
-    <style name="Theme.PH35768_AND103_Assignment" parent="Base.Theme.PH35768_AND103_Assignment" />
+        <!-- Customize your theme here. -->
+        <item name="material_dialog_background">#FFFFFF</item>
+        <item name="material_dialog_title_text_color">#000000</item>
+        <item name="material_dialog_message_text_color">#5F5F5F</item>
+        <item name="material_dialog_positive_button_color">@color/colorAccent</item>
+        <item name="material_dialog_positive_button_text_color">#FFFFFF</item>
+        <item name="material_dialog_negative_button_text_color">@color/colorAccent</item>
+    </style>
+    <style name="Theme.PH35768_AND103_Assignment" parent="Base.Theme.PH35768_AND103_Assignment">
+        <!-- Other theme attributes -->
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

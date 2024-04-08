@@ -26,6 +26,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".src.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".src.setting.DeleteAccountActivity"
             android:exported="false" />
         <activity

@@ -7,8 +7,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
 import android.widget.FrameLayout;
 
 import com.bumptech.glide.Glide;
@@ -64,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
     private void setUpToolbar() {
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        Picasso.get().load(sharedPreferences.getString("avatar", "")).into(binding.avatarIcon);
         binding.avatarIcon.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, AccountAndSettingActivity.class));
         });
@@ -101,5 +103,11 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUpAvatarUserLogin();
     }
 }
