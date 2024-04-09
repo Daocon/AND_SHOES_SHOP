@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -27,6 +28,9 @@ import com.example.ph35768_and103_assignment.init.InputValidator;
 import com.example.ph35768_and103_assignment.model.Response;
 import com.example.ph35768_and103_assignment.model.User;
 import com.example.ph35768_and103_assignment.services.HttpRequest;
+import com.example.ph35768_and103_assignment.src.AccountAndSettingActivity;
+import com.saadahmedev.popupdialog.PopupDialog;
+import com.saadahmedev.popupdialog.listener.StatusDialogActionListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,8 +39,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
-import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -121,22 +123,20 @@ public class SignUpActivity extends AppCompatActivity {
     };
 
     private void aniDialog() {
-        BottomSheetMaterialDialog mBottomSheetDialog = new BottomSheetMaterialDialog.Builder(this)
-                .setAnimation(R.raw.success)
-                .setTitle("Success")
-                .setMessage("Congratulations! You have successfully registered.")
-                .setCancelable(false)
-                .setPositiveButton("Cancel", R.drawable.close1, new BottomSheetMaterialDialog.OnClickListener() {
+        PopupDialog.getInstance(this)
+                .statusDialogBuilder()
+                .createSuccessDialog()
+                .setHeading("Well Done")
+                .setDescription("You have successfully completed the task")
+                .build(new StatusDialogActionListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
+                    public void onStatusActionClicked(Dialog dialog) {
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                        dialogInterface.dismiss();
                         finish();
+                        dialog.dismiss();
                     }
                 })
-                .build();
-        // Show Dialog
-        mBottomSheetDialog.show();
+                .show();
     }
 
     private void chooseImage() {

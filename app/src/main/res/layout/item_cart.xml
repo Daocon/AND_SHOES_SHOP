@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="10dp"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/bg_btn_size_color_white"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_cart"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/shoe1" />
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_cart_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nike Air Max 270"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_cart_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$150"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_cart_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Color: Black"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_cart_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size: 42"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_minus"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/br_buttonsignin"
+                android:text="-"
+                android:textSize="16sp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tv_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_marginHorizontal="15dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_plus"
+                android:layout_width="50dp"
+                android:background="@drawable/br_buttonsignin"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xoa"
+        android:background="@drawable/br_buttonsignin"
+        android:textColor="@color/white"/>
+
+
+</LinearLayout>

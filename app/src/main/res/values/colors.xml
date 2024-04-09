@@ -10,7 +10,26 @@
     <color name="teal_700">#FF018786</color>
     <color name="colorWhenActive">#00BCD4</color> <!-- Màu khi item được chọn -->
     <color name="colorWhenInactive">#6E6E71</color> <!-- Màu khi item không được chọn -->
-    <color name="colorPrimary">#3F51B5</color> <!-- Your primary color -->
-    <color name="colorPrimaryDark">#303F9F</color> <!-- Your primary dark color -->
-    <color name="colorAccent">#FF4081</color> <!-- Your accent color -->
+    <color name="colorPrimary">#00BCD4</color> <!-- Your primary color -->
+    <color name="colorPrimaryDark">#025761</color> <!-- Your primary dark color -->
+    <color name="colorAccent">#2196F3</color> <!-- Your accent color -->
+    <color name="colorPrimaryVariant">#00BCD4</color>
+    <color name="colorOnPrimary">#000000</color>
+    <color name="colorSecondary">#03DAC5</color>
+    <color name="colorSecondaryVariant">#018786</color>
+    <color name="colorOnSecondary">#000000</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorError">#B00020</color>
+    <color name="colorOnBackground">#000000</color>
+    <color name="colorOnSurface">#000000</color>
+    <color name="colorOnError">#FFFFFF</color>
+
+    <color name="colorPrimaryLight">#FFFFFF</color>
+    <color name="colorPrimaryLighter">#F5F5F5</color>
+    <color name="colorPrimaryLightest">#FAFAFA</color>
+
+    <color name="colorPrimaryDarker">#121212</color>
+    <color name="colorPrimaryDarkest">#000000</color>
+
 </resources>

@@ -2,65 +2,87 @@ package com.example.ph35768_and103_assignment.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ph35768_and103_assignment.R;
+import com.example.ph35768_and103_assignment.adapter.CategoryAdapter;
+import com.example.ph35768_and103_assignment.adapter.ShoeAdapter;
+import com.example.ph35768_and103_assignment.databinding.FragmentFavoriteBinding;
+import com.example.ph35768_and103_assignment.init.IdCategoryChoosed;
+import com.example.ph35768_and103_assignment.model.Response;
+import com.example.ph35768_and103_assignment.model.Shoe;
+import com.example.ph35768_and103_assignment.services.HttpRequest;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FavoriteFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class FavoriteFragment extends Fragment {
+import java.util.ArrayList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import retrofit2.Call;
+import retrofit2.Callback;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public FavoriteFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FavoriteFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FavoriteFragment newInstance(String param1, String param2) {
-        FavoriteFragment fragment = new FavoriteFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+public class FavoriteFragment extends Fragment implements IdCategoryChoosed {
+    private FragmentFavoriteBinding binding;
+    private ArrayList<Shoe> dsShoe;
+    private ShoeAdapter shoeAdapter;
+    private HttpRequest httpRequest;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        httpRequest = new HttpRequest();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
+        binding = FragmentFavoriteBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getDataShoeFavorite();
+
+    }
+
+    private void getDataShoeFavorite() {
+        httpRequest.callApi().getFavoriteShoe().enqueue(responseFavShoe);
+    }
+
+    Callback<Response<ArrayList<Shoe>>> responseFavShoe = new Callback<Response<ArrayList<Shoe>>>() {
+        @Override
+        public void onResponse(Call<Response<ArrayList<Shoe>>> call, retrofit2.Response<Response<ArrayList<Shoe>>> response) {
+            if (response.isSuccessful()){
+                if (response.body().getStatus() == 200){
+                    dsShoe = response.body().getData();
+                    getdata(dsShoe);
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Response<ArrayList<Shoe>>> call, Throwable t) {
+
+        }
+    };
+
+    private void getdata(ArrayList<Shoe> dsShoe) {
+        shoeAdapter = new ShoeAdapter(dsShoe, getActivity(), this);
+        GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 2);
+        binding.rcvShoesFavorite.setLayoutManager(linearLayoutManager);
+        binding.rcvShoesFavorite.setAdapter(shoeAdapter);
+    }
+
+    @Override
+    public void getIdCategory(String idCategory) {
+
     }
 }

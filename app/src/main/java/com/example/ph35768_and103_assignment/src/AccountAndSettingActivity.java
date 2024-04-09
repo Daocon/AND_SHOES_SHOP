@@ -2,6 +2,7 @@ package com.example.ph35768_and103_assignment.src;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,9 +22,10 @@ import com.example.ph35768_and103_assignment.services.HttpRequest;
 import com.example.ph35768_and103_assignment.src.setting.DeleteAccountActivity;
 import com.example.ph35768_and103_assignment.src.setting.EditProfileActivity;
 import com.google.gson.Gson;
+import com.saadahmedev.popupdialog.PopupDialog;
+import com.saadahmedev.popupdialog.listener.StandardDialogActionListener;
+import com.saadahmedev.popupdialog.listener.StatusDialogActionListener;
 
-import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
-import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -47,9 +49,27 @@ public class AccountAndSettingActivity extends AppCompatActivity {
         loadUserDataAndUpdateUI();
 
         binding.btnLogout.setOnClickListener(v -> {
-            sharedPreferences.edit().clear().apply();
-            startActivity(new Intent(AccountAndSettingActivity.this, LoginActivity.class));
-            finish();
+            PopupDialog.getInstance(this)
+                    .standardDialogBuilder()
+                    .createIOSDialog()
+                    .setHeading("Logout")
+                    .setDescription("Are you sure you want to logout?" +
+                            " This action cannot be undone")
+                    .build(new StandardDialogActionListener() {
+                        @Override
+                        public void onPositiveButtonClicked(Dialog dialog) {
+                            sharedPreferences.edit().clear().apply();
+                            startActivity(new Intent(AccountAndSettingActivity.this, LoginActivity.class));
+                            finish();
+                            dialog.dismiss();
+                        }
+
+                        @Override
+                        public void onNegativeButtonClicked(Dialog dialog) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
         });
 
     }
@@ -72,28 +92,25 @@ public class AccountAndSettingActivity extends AppCompatActivity {
             Toast.makeText(this, "Payment info", Toast.LENGTH_SHORT).show();
         });
         binding.llDeleteAccount.setOnClickListener(v -> {
-            BottomSheetMaterialDialog mBottomSheetDialog = new BottomSheetMaterialDialog.Builder(this)
-                    .setTitle("Delete?")
-                    .setMessage("Are you sure want to delete this account?")
-                    .setCancelable(false)
-                    .setPositiveButton("Delete", R.drawable.deleteicon1, new BottomSheetMaterialDialog.OnClickListener() {
+            PopupDialog.getInstance(this)
+                    .standardDialogBuilder()
+                    .createIOSDialog()
+                    .setHeading("Delete")
+                    .setDescription("Are you sure you want to logout?" +
+                            " This action cannot be undone")
+                    .build(new StandardDialogActionListener() {
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int which) {
-                            Toast.makeText(getApplicationContext(), "Deleted!", Toast.LENGTH_SHORT).show();
+                        public void onPositiveButtonClicked(Dialog dialog) {
                             httpRequest.callApi().deleteUser(userDataUpdate.getId()).enqueue(responseDelete);
-                            dialogInterface.dismiss();
+                            dialog.dismiss();
                         }
-                    })
-                    .setNegativeButton("Cancel", R.drawable.close, new BottomSheetMaterialDialog.OnClickListener() {
+
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int which) {
-                            Toast.makeText(getApplicationContext(), "Cancelled!", Toast.LENGTH_SHORT).show();
-                            dialogInterface.dismiss();
+                        public void onNegativeButtonClicked(Dialog dialog) {
+                            dialog.dismiss();
                         }
                     })
-                    .build();
-            // Show Dialog
-            mBottomSheetDialog.show();
+                    .show();
         });
     }
 
@@ -103,8 +120,7 @@ public class AccountAndSettingActivity extends AppCompatActivity {
             if (response.isSuccessful()) {
                 if (response.body().getStatus() == 200) {
                     sharedPreferences.edit().clear().apply();
-                    startActivity(new Intent(AccountAndSettingActivity.this, LoginActivity.class));
-                    finish();
+                    aniOpen();
                 } else {
                     Toast.makeText(AccountAndSettingActivity.this, "Delete fail", Toast.LENGTH_SHORT).show();
                 }
@@ -116,6 +132,23 @@ public class AccountAndSettingActivity extends AppCompatActivity {
             Log.d(">>>> Distributor", "onFailure: " + t.getMessage());
         }
     };
+
+    private void aniOpen() {
+        PopupDialog.getInstance(this)
+                .statusDialogBuilder()
+                .createSuccessDialog()
+                .setHeading("Well Done")
+                .setDescription("You have successfully completed the task")
+                .build(new StatusDialogActionListener() {
+                    @Override
+                    public void onStatusActionClicked(Dialog dialog) {
+                        startActivity(new Intent(AccountAndSettingActivity.this, LoginActivity.class));
+                        finish();
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
 
     private void setUpToolbar() {
         setSupportActionBar(binding.toolbar);
